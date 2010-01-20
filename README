@@ -1,0 +1,25 @@
+IpAuth
+======
+
+This plugin allows adding simple IP restrictions to Rails controllers.
+
+It uses IPAddrList class taken from rack-auth-ip by Keiji Yoshimi:
+http://github.com/walf443/rack-auth-ip 
+
+
+Example
+=======
+
+class SecretController < ActionController::Base
+  authenticates_ip :ip_list => %w(127.0.0.1 192.168.1.0/24)
+end
+
+
+You can limit restriction to certain actions just like before_filter.
+
+class SecretController < ActionController::Base
+  authenticates_ip( { :ip_list => %w(127.0.0.1 192.168.1.0/24) }, { :only => :index } )
+end
+
+
+Copyright (c) 2010 Laurynas Butkus, released under the MIT license

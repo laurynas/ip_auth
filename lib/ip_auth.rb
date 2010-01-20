@@ -16,7 +16,8 @@ module ActionController
           :ip_list => %w(127.0.0.1)
         }.merge(options)
         
-        @ip_list = IPAddrList.new(self.options[:ip_list])
+        @ip_list = self.options[:ip_list].to_a
+        @ip_list = IPAddrList.new(@ip_list) unless @ip_list.empty?
       end
     end
     
